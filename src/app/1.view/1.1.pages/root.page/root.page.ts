@@ -35,7 +35,7 @@ export class RootPage {
     isLogged: boolean = false;
     treeControl: NestedTreeControl<MenuEntity> = new NestedTreeControl<MenuEntity>(node => node.Children);
     dataMenu: MatTreeNestedDataSource<MenuEntity> = new MatTreeNestedDataSource<MenuEntity>();
-    rootTitle: string = 'Monitor';
+    rootTitle: string = 'Productos';
     notificationNumber: number = 10;
 
     constructor(
