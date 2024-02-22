@@ -1,8 +1,8 @@
-# Inventory-products Angular
+# Inventory-products
 
 ## Descripción
 
-Breve descripción del propósito y características principales de la aplicación.
+Esta aplicación te permite manejar productos mediante el control de stock. Utiliza tecnologias como AngularJS, AngularMaterial y Typescript
 
 ## Capturas de Pantalla
 
