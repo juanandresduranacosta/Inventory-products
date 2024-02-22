@@ -1,0 +1,23 @@
+<div class="login-page">
+    <div class="login-page-header">
+        <img src="./../../../../base/assets/logo-itsense.svg" alt="Finaktiva" class="login-page-header-img">
+    </div>
+    <div class="login-page-body">
+        <span class="login-page-body-title">Prueba - Juan Andres Duran Acosta</span>
+        <span class="login-page-body-line"></span>
+        <span class="login-page-body-subtitle">Inicia sesión con tu usuario y contraseña</span>
+        <form [formGroup]="loginForm" (ngSubmit)="onLogin()" class="login-page-body-form">
+            <mat-label class="login-page-body-form-label">Usuario</mat-label>
+            <mat-form-field appearance="outline" class="login-page-body-form-input">
+                <input matInput placeholder="Escribe aquí tu correo electrónico" formControlName="user">
+            </mat-form-field>
+            <mat-label class="login-page-body-form-label">Contraseña</mat-label>
+            <mat-form-field appearance="outline" class="login-page-body-form-input">
+                <input matInput type="password" autocomplete="one-time-code" placeholder="Escribe aquí tu contraseña" formControlName="password">
+                <mat-icon matSuffix class="login-page-body-form-input-icon">visibility</mat-icon>
+            </mat-form-field>
+            <button mat-flat-button class="login-page-body-form-button">Iniciar sesión</button>
+        </form>
+    </div>
+    <div class="login-page-footer"></div>
+</div>

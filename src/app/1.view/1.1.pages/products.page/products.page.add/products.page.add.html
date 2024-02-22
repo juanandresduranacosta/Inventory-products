@@ -1,0 +1,51 @@
+<div class="products-page-add">
+    <div class="products-page-add-header">
+        <span class="products-page-add-header-title">Iniciar monitoreo</span>
+        <mat-icon class="products-page-add-header-icon" fontIcon="close" matTooltip="Cerrar" (click)="closeDialog(false)"></mat-icon>
+    </div>
+    <mat-progress-bar mode="indeterminate" *ngIf="showProgressBar()"></mat-progress-bar>
+    <div class="products-page-add-body">
+        <form [formGroup]="form" class="default-form-container products-page-add-body-form">
+            <div class="default-form-container-column">
+                <div class="default-form-container-column-container">
+                    <mat-label class="default-form-container-column-container-label">Tipo de elaboración</mat-label>
+                    <mat-form-field appearance="outline" class="default-form-container-column-container-input">
+                        <mat-select formControlName="elaborationType" placeholder="Tipo de elaboración">
+                            <mat-option [value]="elaborationTypeFilterEnum.ElaboradoAMano">{{ elaborationTypeEnum.ElaboradoAMano }}</mat-option>
+                            <mat-option [value]="elaborationTypeFilterEnum.ElaboradoAManoYMaquin">{{ elaborationTypeEnum.ElaboradoAManoYMaquin }}</mat-option>
+                        </mat-select>
+                        <mat-error class="default-form-container-column-container-input-error" align="end" *ngIf="controlValidator(form.controls['elaborationType'])">
+                            Debe seleccionar el tipo de elaboración
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="default-form-container-column-container">
+                    <mat-label class="default-form-container-column-container-label">Nombre</mat-label>
+                    <mat-form-field appearance="outline" class="default-form-container-column-container-input">
+                        <input matInput placeholder="Nombre" formControlName="name" maxlength="200">
+                        <mat-error class="default-form-container-column-container-input-error" align="end" *ngIf="controlValidator(form.controls['name'])">
+                            Debe ingresar el nombre
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="default-form-container-column-container">
+                    <mat-label class="default-form-container-column-container-label">Estado</mat-label>
+                    <mat-form-field appearance="outline" class="default-form-container-column-container-input">
+                        <mat-select formControlName="status" placeholder="Estado">
+                            <mat-option [value]="productStatusFilterEnum.EnStok">{{ productStatusEnum.EnStok }}</mat-option>
+                            <mat-option [value]="productStatusFilterEnum.Defectuoso">{{ productStatusEnum.Defectuoso }}</mat-option>
+                            <mat-option [value]="productStatusFilterEnum.EnProcesoDeEntrada">{{ productStatusEnum.EnProcesoDeEntrada }}</mat-option>
+                            <mat-option [value]="productStatusFilterEnum.EnProcesoDeSalida">{{ productStatusEnum.EnProcesoDeSalida }}</mat-option>
+                        </mat-select>
+                        <mat-error class="default-form-container-column-container-input-error" align="end" *ngIf="controlValidator(form.controls['status'])">
+                            Debe seleccionar el estado
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="products-page-add-footer">
+        <button mat-raised-button color="primary" class="default-btn-accept products-page-add-footer-btn" [disabled]="showProgressBar()" (click)="onRegistry()">Registrar</button>
+    </div>
+</div>

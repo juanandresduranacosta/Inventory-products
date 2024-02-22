@@ -1,0 +1,90 @@
+<div class="default-container products-page-list">
+    <div class="products-start-page-toolbar" [@filterInOut]="filterOpened">
+        <div class="products-start-page-toolbar-title-container">
+            <span class="products-start-page-toolbar-title">Lista de productos</span>
+            <span class="products-start-page-toolbar-space"></span>
+            <mat-icon class="products-start-page-toolbar-icon" fontIcon="refresh" matTooltip="Actualizar listado de productos" (click)="onRealod()"/>
+            <mat-icon class="products-start-page-toolbar-icon" fontIcon="addchart" matTooltip="Agregar producto" (click)="onProducts()"/>
+            <mat-icon class="products-start-page-toolbar-icon" fontIcon="search" matTooltip="Buscar/Filtrar" (click)="onExecuteFilter()" *ngIf="showFilterButton"/>
+            <mat-icon class="products-start-page-toolbar-icon" fontIcon="search_off" matTooltip="Limpiar filtros" (click)="onClearFilter()" *ngIf="showFilterButton"/>
+            <mat-icon class="products-start-page-toolbar-icon" fontIcon="filter_list" matTooltip="Mostrar filtros" (click)="onShowFilter()"/>
+        </div>
+        <div class="products-start-page-toolbar-filter" [@filterFormInOut]="filterFormOpened">
+            <form [formGroup]="form" class="default-form-container products-start-page-toolbar-filter-form">
+                <div class="default-form-container-column">
+                    <div class="default-form-container-column-container">
+                        <mat-label class="default-form-container-column-container-label">Estado del producto</mat-label>
+                        <mat-form-field appearance="outline" class="default-form-container-column-container-input">
+                            <mat-select formControlName="status" placeholder="Estado del producto">
+                                <mat-option [value]="productStatusFilterEnum.EnStok">En stock</mat-option>
+                                <mat-option [value]="productStatusFilterEnum.Defectuoso">Defectuoso</mat-option>
+                                <mat-option [value]="productStatusFilterEnum.EnProcesoDeEntrada">En proceso de entrada</mat-option>
+                                <mat-option [value]="productStatusFilterEnum.EnProcesoDeSalida">En proceso de salida</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="products-start-page-body progress-bar-container" [@tableInOut]="tableOpened">
+        <mat-progress-bar mode="indeterminate" *ngIf="showProgressBar()"></mat-progress-bar>
+        <table mat-table #cmpTable [dataSource]="listData" matSort>
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef>Código</th>
+                <td mat-cell *matCellDef="let element" (contextmenu)="onRightClick($event, element)"> {{element.id}} </td>
+            </ng-container>
+            <ng-container matColumnDef="typeElaboration">
+                <th mat-header-cell *matHeaderCellDef>Tipo de elaboración</th>
+                <td mat-cell *matCellDef="let element" (contextmenu)="onRightClick($event, element)"> {{ element.typeElaboration }} </td>
+            </ng-container>
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef>Nombre</th>
+                <td mat-cell *matCellDef="let element" (contextmenu)="onRightClick($event, element)"> {{ element.name }} </td>
+            </ng-container>
+            <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef>Estado</th>
+                <td mat-cell *matCellDef="let element" (contextmenu)="onRightClick($event, element)"> {{ element.status }} </td>
+            </ng-container>
+            <ng-container matColumnDef="creationDate">
+                <th mat-header-cell *matHeaderCellDef>Fecha de registro</th>
+                <td mat-cell *matCellDef="let element" (contextmenu)="onRightClick($event, element)"> {{ element.creationDate | date: FORMAT_DATE }} </td>
+            </ng-container>
+            <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let row">
+                    <mat-icon class="products-start-page-body-icon" matTooltip="Opciones" (click)="onRightClick($event, row)">more_vert</mat-icon>
+                </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="listDataColumn; sticky: true"></tr>
+            <tr mat-row *matRowDef="let row; columns: listDataColumn; let i = index" class="table-row" [class.table-row__alternate]="i % 2"></tr>
+        </table>
+    </div>
+    <div class="products-start-page-footer">
+        <mat-paginator #cmpPaginator (page)="onChangePage($event)"></mat-paginator>
+    </div>
+
+    <!-- Lugar donde se muestra el menu contextual  -->
+    <div 
+        style="visibility: hidden; position: fixed;" 
+        [style.left.px]="menuTopLeftPosition.x" 
+        [style.top.px]="menuTopLeftPosition.y" 
+        [matMenuTriggerFor]="rightMenu">
+    </div> 
+
+    <!-- Menu contextual -->
+    <mat-menu #rightMenu="matMenu"> 
+        <ng-template matMenuContent let-item="item"> 
+            <button mat-menu-item (click)="onMarkAs(item.id, 2)"  [disabled]="item.disabledDefective">
+                <mat-icon>block</mat-icon>
+                <span>Marcar como defectuoso</span>
+            </button> 
+            <mat-divider></mat-divider>
+            <button mat-menu-item (click)="onMarkAs(item.id, 4)" [disabled]="item.disabledCheckOutProcess">
+                <mat-icon>report_gmailerrorred</mat-icon>
+                <span>Marcar en proceso de salida</span>
+            </button>
+        </ng-template> 
+    </mat-menu> 
+
+</div>

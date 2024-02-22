@@ -1,0 +1,97 @@
+.login-page{
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    background-color: #fff;
+}
+
+.login-page-header{
+    width: 100vw;
+    height: calc(50vh - 226px);
+    background-color: var(--color-0);
+    align-items: center;
+    border-bottom: solid 1px var(--secundary-2);
+}
+
+.login-page-body{
+    width: 100vw;
+    height: 450px;
+    background-color: transparent;
+    text-align: center;
+    background-image: url(https://itsense.com.co/wp-content/uploads/2024/01/Banner-Principal.webp);
+    background-size: cover;
+}
+
+.login-page-footer{
+    width: 100vw;
+    height: calc(50vh - 226px);
+    background-color: var(--color-0);
+    border-top: solid 1px var(--secundary-2);
+}
+
+.login-page-header-img{
+    margin-left: calc(50vw - 120px);
+    width: 240px;
+    height: 40px;
+    margin-top: calc(50vh - 280px);
+}
+
+.login-page-body-title{
+    font-family: Nekst-Medium;
+    font-size: 32px;
+    color: var(--font-color-1);
+    display: block;
+    margin-top: 10px;
+}
+
+.login-page-body-line{
+    width: 40vw;
+    height: 1px;
+    margin: 20px 30vw;
+    background-color: var(--color-3);
+    display: block;
+}
+
+.login-page-body-subtitle{
+    font-family: Nekst-Medium;
+    font-size: 20px;
+    color: var(--font-color-1);
+    display: block;
+    margin: 10px 0px 20px 0px;
+}
+
+.login-page-body-form{
+    display: grid;
+}
+
+.login-page-body-form-label{
+    width: calc(40vw - 60px);
+    margin: 0px 0px 12px 30vw;
+    color: var(--font-color-1);
+    font-family: Nekst-Light;
+    font-size: 16px;
+    text-align: left;
+    padding: 0px 30px;
+}
+
+.login-page-body-form-input{
+    width: calc(40vw - 40px);
+    margin-left: 30vw;
+    padding: 0px 20px;
+}
+
+.login-page-body-form-button{
+    width: 300px;
+    margin-left: calc(50vw - 150px);
+    background-color: var(--button-background-color) !important;
+    background-image: var(--button-background-image) !important;
+    font-family: Nekst-Medium !important;
+    font-size: 18px;
+    margin-top: 10px;
+    color: var(--font-color-1) !important;
+    height: 46px;
+}
+
+.login-page-body-form-input-icon{
+    color: var(--font-color-2);
+}
